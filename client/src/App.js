@@ -1,18 +1,31 @@
 import React, { Component } from "react";
 import { Route, Link } from "react-router-dom";
 import { withRouter } from "react-router";
-import { loginUser, registerUser, verifyUser, readAllArts } from "./api-helper";
+import {
+  createArt,
+  loginUser,
+  registerUser,
+  verifyUser,
+  readAllArts
+} from "./api-helper";
 import Header from "./components/Header";
 import Login from "./components/Login";
 // import User from './components/User';
 import Register from "./components/Register";
 import Arts from "./components/Arts";
+import CreateArt from "./components/CreateArt";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      arts:[],
+      arts: [],
+      artForm: {
+        username: "default",
+        art_name: "",
+        url: "",
+        description: ""
+      },
       currentUser: null,
       authFormData: {
         username: "",
@@ -23,11 +36,35 @@ class App extends Component {
   }
 
   async componentDidMount() {
+    await this.getArts();
     const currentUser = await verifyUser();
     if (currentUser) {
       this.setState({ currentUser });
     }
   }
+
+  getArts = async () => {
+    const arts = await readAllArts();
+    this.setState({
+      arts
+    });
+    // console.log(arts)
+  };
+
+  newArt = async e => {
+    e.preventDefault();
+    await createArt(this.state.currentUser.id, this.state.artForm);
+  };
+
+  handleFormChange = e => {
+    const { name, value } = e.target;
+    this.setState(prevState => ({
+      artForm: {
+        ...prevState.artForm,
+        [name]: value
+      }
+    }));
+  };
 
   // -----Auth ---------------
   handleLoginButton = () => {
@@ -40,11 +77,11 @@ class App extends Component {
     this.props.history.push("/");
   };
 
-  handleRegister = async (e) => {
+  handleRegister = async e => {
     e.preventDefault();
     const currentUser = await registerUser(this.state.authFormData);
     this.setState({ currentUser });
-  }
+  };
 
   handleLogout = () => {
     localStorage.removeItem("authToken");
@@ -63,15 +100,6 @@ class App extends Component {
     }));
   };
 
-
-  getArts = async () => {
-    const arts = await readAllArts();
-    this.setState({
-      arts
-    })
-    console.log(arts)
-  }
-
   render() {
     return (
       <div className="App">
@@ -81,7 +109,6 @@ class App extends Component {
           currentUser={this.state.currentUser}
         />
         <Route
-          exact
           path="/login"
           render={() => (
             <Login
@@ -92,7 +119,6 @@ class App extends Component {
           )}
         />
         <Route
-          exact
           path="/register"
           render={() => (
             <Register
@@ -103,14 +129,21 @@ class App extends Component {
           )}
         />
         <Route
-          exact path="/arts"
+          exact
+          path="/arts"
+          render={() => <Arts arts={this.state.arts} />}
+        />
+
+        <Route
+          path="/new/arts"
           render={() => (
-            <Arts
-              arts = {this.state.arts}
+            <CreateArt
+              handleFormChange={this.handleFormChange}
+              artForm={this.state.artForm}
+              newArt={this.newArt}
             />
           )}
         />
-
       </div>
     );
   }

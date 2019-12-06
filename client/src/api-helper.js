@@ -30,7 +30,13 @@ export const verifyUser = async () => {
   return false;
 };
 
+export const createArt = async (userId, data) => {
+  data.user_id = userId;
+  const resp = await api.post("/arts", { art: data });
+  return resp.data;
+};
+
 export const readAllArts = async () => {
-  const resp = await api.get('/arts')
-  return resp.data
-}
+  const resp = await api.get("/arts");
+  return resp.data;
+};

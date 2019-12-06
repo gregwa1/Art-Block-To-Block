@@ -5,7 +5,9 @@ export default function Header(props) {
   return (
     <header>
       <h1>
-        <Link to='/arts'> Art Block To Block</Link>
+        <Link to='/'> Art Block To Block</Link>
+        <Link to="/arts"><button>Gallery</button></Link>
+        <Link to="/new/arts"><button>Create Art</button></Link>
       </h1>
       <div>
         {props.currentUser

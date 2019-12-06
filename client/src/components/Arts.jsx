@@ -1,17 +1,14 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
 function Arts(props) {
   return (
     <div className="art-gallery">
       {props.arts &&
         props.arts.map(art => (
-          <div className="art-list">
+          <div className="art-list" key={art.id}>
             <img className="single-art" src={art.url} />
-            <h1>
-              {art.name} hello
-              onClick={props.art}
-            </h1>
+            <h1>{art.name}</h1>
           </div>
         ))}
     </div>
