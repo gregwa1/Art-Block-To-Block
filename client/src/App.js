@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Route, Link } from "react-router-dom";
 import { withRouter } from "react-router";
 import {
+  destroyArt,
   createArt,
   loginUser,
   registerUser,
@@ -14,6 +15,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Arts from "./components/Arts";
 import CreateArt from "./components/CreateArt";
+import ArtProfile from "./components/ArtProfile";
 
 class App extends Component {
   constructor(props) {
@@ -65,6 +67,13 @@ class App extends Component {
       }
     }));
   };
+
+  deleteArt = async (id) => {
+    await destroyArt(id);
+    this.setState(prevState => ({
+      arts: prevState.arts.filter(art => art.id !== id)
+    }))
+  }
 
   // -----Auth ---------------
   handleLoginButton = () => {
@@ -143,6 +152,21 @@ class App extends Component {
               newArt={this.newArt}
             />
           )}
+        />
+        <Route
+          path="/arts/:id"
+          render={(props) => {
+            const { id } = props.match.params;
+            const art = this.state.arts.find(el => el.id === parseInt(id));
+            return <ArtProfile
+              id={id}
+              art={art}
+              handleFormChange={this.handleFormChange}
+              // mountEditForm={this.mountEditForm}
+              // editArt={this.editArt}
+              artForm={this.state.artForm}
+              deleteArt={this.deleteArt} />
+          }}
         />
       </div>
     );

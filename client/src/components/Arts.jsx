@@ -6,7 +6,10 @@ function Arts(props) {
     <div className="art-gallery">
       {props.arts &&
         props.arts.map(art => (
-          <div className="art-list" key={art.id}>
+          <div className="art-list" key={art.id}
+            onClick={(e) => {
+              props.history.push(`/arts/${art.id}`);
+          }}>
             <img className="single-art" src={art.url} />
             <h1>{art.name}</h1>
           </div>

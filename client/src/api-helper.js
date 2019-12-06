@@ -40,3 +40,8 @@ export const readAllArts = async () => {
   const resp = await api.get("/arts");
   return resp.data;
 };
+
+export const destroyArt = async (id) => {
+  const resp = await api.delete(`/arts/${id}`)
+  return resp.data
+}
