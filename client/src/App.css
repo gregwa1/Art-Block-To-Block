@@ -1,22 +1,29 @@
-.App {
-  text-align: center;
+/* font-family: 'Lobster', cursive; */
+/* font-family: 'Indie Flower', cursive; */
+/* font-family: 'Play', sans-serif; */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: #24252a;
 }
 
-.App-logo {
-  height: 40vmin;
+li,
+a,
+button {
+  font-family: "Play", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #edf0f1;
+  text-decoration: none;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+nav {
+  border: black;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between; 
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #09d3ac;
+  padding: 30px 10%;
+  
 }

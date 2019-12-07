@@ -1,5 +1,7 @@
 import axios from "axios";
 
+const baseURL = ""
+
 const calling = "http://localhost:3000";
 
 const api = axios.create({
@@ -40,6 +42,11 @@ export const readAllArts = async () => {
   const resp = await api.get("/arts");
   return resp.data;
 };
+
+export const updateArt = async (id, data) => {
+  const resp = await api.put(`/arts/${id}`, { art: data })
+  return resp.data
+}
 
 export const destroyArt = async (id) => {
   const resp = await api.delete(`/arts/${id}`)
