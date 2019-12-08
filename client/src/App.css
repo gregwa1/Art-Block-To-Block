@@ -7,6 +7,10 @@
   margin: 0;
   padding: 0;
   background-color: #24252a;
+  background-image: url("https://www.nuhotelbrooklyn.com/wp-content/uploads/2015/05/17119786192_083b74ceaf_z.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+
 }
 
 li,
