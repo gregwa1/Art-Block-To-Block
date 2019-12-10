@@ -4,9 +4,9 @@ class AuthenticationController < ApplicationController
   # POST /auth/login
   def login
     @user = User.find_by_username(params[:username])
-    if @user.authenticate(params[:password]) #authenticate method provided by Bcrypt and 'has_secure_password'
-      token = encode(user_id: @user.id, username: @user.username)
-      render json: { user: @user, token: token }, status: :ok
+    if @user.authenticate(params[:password]) # authenticate method provided by Bcrypt and 'has_secure_password'
+      token = encode(id: @user.id, username: @user.username)
+      render json: { token: token , user: {id: @user.id, username: @user.username}}, status: :ok
     else
       render json: { error: 'unauthorized' }, status: :unauthorized
     end

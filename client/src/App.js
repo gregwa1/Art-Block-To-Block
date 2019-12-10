@@ -141,6 +141,7 @@ class App extends Component {
 
   handleRegister = async e => {
     e.preventDefault();
+    debugger;
     const currentUser = await registerUser(this.state.authFormData);
     this.setState({ currentUser });
   };
