@@ -8,72 +8,89 @@
   padding: 0;
   background-color: #24252a;
   background-image: url("https://www.nuhotelbrooklyn.com/wp-content/uploads/2015/05/17119786192_083b74ceaf_z.jpg");
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   background-size: cover;
-  
 }
-/* 
-li,
-a,
-button {
-  font-family: "Play", sans-serif;
-  font-weight: 500;
-  font-size: 16px;
-  color: #edf0f1;
-  text-decoration: none;
-} */
+
+form p {
+  color: wheat;
+}
+
+.create-form h2 {
+  color: wheat;
+}
+
+.create-form {
+  min-height: 90vh;
+}
 
 nav {
   /* border: 3px solid black; */
   display: flex;
-  justify-content: space-between; 
+  justify-content: space-between;
   align-items: center;
   padding: 30px 10%;
-  
 }
 
-nav button{
+nav button {
   border: 1px solid black;
   font-family: "Play", sans-serif;
   font-weight: 500;
   font-size: 16px;
   color: #edf0f1;
-  background-color:  #1a6b2f;
+  background-color: #1a6b2f;
   text-decoration: none;
 }
 
-nav a{
+nav a {
   color: chartreuse;
   text-decoration: none;
-  font-family: 'Lobster', cursive;
+  font-family: "Lobster", cursive;
   font-size: 32px;
+  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
 }
 
-.art-gallery{
-  height: 100vh;
+.art-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  height: 130vh;
 }
 
-.auth-container p{
+img.single-art {
+  padding: 5px;
+  border: 2px solid rgb(45, 49, 47);
+  box-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+  width: 80%;
+
+}
+
+.auth-container p {
   color: white;
 }
 
-.auth-container h2{
+.auth-container h2 {
   color: white;
 }
 
-.auth-container a{
+.auth-container a {
   color: wheat;
   text-decoration: none;
 }
 
-header{
+.auth-container {
+  min-height: 90vh;
+
+}
+
+header {
   color: white;
 }
 
-.username{
+.username {
   color: chartreuse;
 }
 
 .art-page h1 {
   color: wheat;
 }
+

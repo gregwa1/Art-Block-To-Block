@@ -11,7 +11,7 @@ function CreateArt(props) {
           type="string"
           name="art_name"
           value={props.artForm.art_name}
-          onChange={() => props.handleFormChange(this.props.artForm)}
+          onChange={props.handleFormChange}
         />
 
         <p>Art Link</p>
@@ -19,7 +19,7 @@ function CreateArt(props) {
           type="string"
           name="url"
           value={props.artForm.url}
-          onChange={() => props.handleFormChange(this.props.artForm)}
+          onChange={props.handleFormChange}
         />
 
         <p>Description</p>
@@ -27,7 +27,7 @@ function CreateArt(props) {
           type="text"
           name="description"
           value={props.artForm.description}
-          onChange={() => props.handleFormChange(this.props.artForm)}
+          onChange={props.handleFormChange}
         />
 
         <button>Submit</button>

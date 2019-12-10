@@ -70,6 +70,7 @@ class App extends Component {
   newArt = async e => {
     e.preventDefault();
     await createArt(this.state.currentUser.id, this.state.artForm);
+    this.props.history.push("/arts");
   };
 
   handleFormChange = e => {
@@ -95,6 +96,7 @@ class App extends Component {
     this.setState(prevState => ({
       arts: prevState.arts.filter(art => art.id !== id)
     }));
+    this.props.history.push("/arts");
   };
 
   // ---Comments ---
@@ -178,8 +180,19 @@ class App extends Component {
             />
           )}
         />
+
         <Route
-          path="/register"
+          exact path="/"
+          render={() => (
+            <Login
+              handleLogin={this.handleLogin}
+              handleChange={this.authHandleChange}
+              formData={this.state.authFormData}
+            />
+          )}
+        />
+        <Route
+          exact path="/register"
           render={() => (
             <Register
               handleRegister={this.handleRegister}
@@ -188,6 +201,7 @@ class App extends Component {
             />
           )}
         />
+
         <Route
           exact
           path="/arts"
@@ -195,7 +209,7 @@ class App extends Component {
         />
 
         <Route
-          path="/new/arts"
+          exact path="/new/arts"
           render={() => (
             <CreateArt
               handleFormChange={this.handleFormChange}
@@ -205,7 +219,7 @@ class App extends Component {
           )}
         />
         <Route
-          path="/arts/:id"
+          exact path="/arts/:id"
           render={props => {
             const { id } = props.match.params;
             const art = this.state.arts.find(el => el.id === parseInt(id));
@@ -223,14 +237,14 @@ class App extends Component {
           }}
         />
 
-         <Route
+        <Route
           exact
           path="/comments"
           render={() => <Comments comments={this.state.comments} />}
-        /> 
+        />
 
         <Route
-          path="/new/comments"
+          exact path="/new/comments"
           render={() => (
             <CreateComments
               handleFormChange={this.handleFormChange}
@@ -240,7 +254,7 @@ class App extends Component {
           )}
         />
         <Route
-          path="/comments/:id"
+          exact path="/comments/:id"
           render={props => {
             const { id } = props.match.params;
             const comment = this.state.comments.find(
