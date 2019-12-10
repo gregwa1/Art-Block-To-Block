@@ -9,7 +9,7 @@ export default function Header(props) {
         <Link to="/arts"><button>Gallery</button></Link>
         <Link to="/new/arts"><button>Create Art</button></Link>
       </nav>
-      <div>
+      <div className="username">
         {props.currentUser
           ?
           <>

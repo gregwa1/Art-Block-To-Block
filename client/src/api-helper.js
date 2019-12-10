@@ -52,3 +52,26 @@ export const destroyArt = async (id) => {
   const resp = await api.delete(`/arts/${id}`)
   return resp.data
 }
+
+// ---Comments ---
+
+export const createComments = async (userId, data) => {
+  data.user_id = userId;
+  const resp = await api.post("/arts", { art: data });
+  return resp.data;
+};
+
+export const readAllComments = async () => {
+  const resp = await api.get("/comments");
+  return resp.data;
+};
+
+export const updateComments = async (id, data) => {
+  const resp = await api.put(`/comments/${id}`, { comments: data })
+  return resp.data
+}
+
+export const destroyComments = async (id) => {
+  const resp = await api.delete(`/comments/${id}`)
+  return resp.data
+}

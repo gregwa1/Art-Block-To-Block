@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { Route, Link } from "react-router-dom";
 import { withRouter } from "react-router";
 import {
+  readAllComments,
+  destroyComments,
+  createComments,
   updateArt,
   destroyArt,
   createArt,
@@ -17,6 +20,9 @@ import Register from "./components/Register";
 import Arts from "./components/Arts";
 import CreateArt from "./components/CreateArt";
 import ArtProfile from "./components/ArtProfile";
+import CommentProfile from "./components/CommentProfile";
+import CreateComments from "./components/CreateComments";
+import Comments from "./components/Comments";
 import "./App.css";
 
 class App extends Component {
@@ -30,6 +36,12 @@ class App extends Component {
         url: "",
         description: ""
       },
+      comments: [],
+      commentForm: {
+        username: "default",
+        art_name: "",
+        description: ""
+      },
       currentUser: null,
       authFormData: {
         username: "",
@@ -41,6 +53,7 @@ class App extends Component {
 
   async componentDidMount() {
     await this.getArts();
+    await this.getComments();
     const currentUser = await verifyUser();
     if (currentUser) {
       this.setState({ currentUser });
@@ -52,7 +65,6 @@ class App extends Component {
     this.setState({
       arts
     });
-    // console.log(arts)
   };
 
   newArt = async e => {
@@ -82,6 +94,35 @@ class App extends Component {
     await destroyArt(id);
     this.setState(prevState => ({
       arts: prevState.arts.filter(art => art.id !== id)
+    }));
+  };
+
+  // ---Comments ---
+
+  getComments = async () => {
+    const comments = await readAllComments();
+    this.setState({
+      comments
+    });
+  };
+
+  newComment = async e => {
+    e.preventDefault();
+    await createComments(this.state.currentUser.id, this.state.commentForm);
+  };
+
+  mountEditForm = async id => {
+    const comments = await readAllComments();
+    const comment = comments.find(el => el.id === parseInt(id));
+    this.setState({
+      commentForm: comment
+    });
+  };
+
+  deleteComment = async id => {
+    await destroyComments(id);
+    this.setState(prevState => ({
+      comments: prevState.comments.filter(comment => comment.id !== id)
     }));
   };
 
@@ -177,6 +218,43 @@ class App extends Component {
                 editArt={this.editArt}
                 artForm={this.state.artForm}
                 deleteArt={this.deleteArt}
+              />
+            );
+          }}
+        />
+
+         <Route
+          exact
+          path="/comments"
+          render={() => <Comments comments={this.state.comments} />}
+        /> 
+
+        <Route
+          path="/new/comments"
+          render={() => (
+            <CreateComments
+              handleFormChange={this.handleFormChange}
+              commentForm={this.state.commentForm}
+              newComment={this.newComment}
+            />
+          )}
+        />
+        <Route
+          path="/comments/:id"
+          render={props => {
+            const { id } = props.match.params;
+            const comment = this.state.comments.find(
+              el => el.id === parseInt(id)
+            );
+            return (
+              <CommentProfile
+                id={id}
+                comment={comment}
+                handleFormChange={this.handleFormChange}
+                mountEditForm={this.mountEditForm}
+                editComment={this.editComment}
+                commentForm={this.state.commentForm}
+                deleteComment={this.deleteComment}
               />
             );
           }}

@@ -6,21 +6,20 @@ function CreateArt(props) {
     <div className="create-form">
       <h2>Create Art</h2>
       <form onSubmit={props.newArt}>
-      
         <p>Art Name:</p>
         <input
-          type="text"
+          type="string"
           name="art_name"
           value={props.artForm.art_name}
-          onChange={props.handleFormChange}
+          onChange={() => props.handleFormChange(this.props.artForm)}
         />
 
         <p>Art Link</p>
         <input
-          type="text"
+          type="string"
           name="url"
           value={props.artForm.url}
-          onChange={props.handleFormChange}
+          onChange={() => props.handleFormChange(this.props.artForm)}
         />
 
         <p>Description</p>
@@ -28,7 +27,7 @@ function CreateArt(props) {
           type="text"
           name="description"
           value={props.artForm.description}
-          onChange={props.handleFormChange}
+          onChange={() => props.handleFormChange(this.props.artForm)}
         />
 
         <button>Submit</button>
