@@ -20,7 +20,7 @@ class AuthenticationController < ApplicationController
       email: @current_user[:email]
     }
 
-    render json: @user
+    render json: @current_user, status: :ok
   end
 
 

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Route, Link } from "react-router-dom";
 import { withRouter } from "react-router";
 import {
+  destroyUser,
   readAllComments,
   destroyComments,
   createComments,
@@ -15,7 +16,8 @@ import {
 } from "./api-helper";
 import Header from "./components/Header";
 import Login from "./components/Login";
-// import User from './components/User';
+import User from "./components/User";
+import EditUser from "./components/EditUser";
 import Register from "./components/Register";
 import Arts from "./components/Arts";
 import CreateArt from "./components/CreateArt";
@@ -99,6 +101,14 @@ class App extends Component {
     this.props.history.push("/arts");
   };
 
+  deleteUser = async id => {
+    await destroyUser(id);
+    // this.setState(prevState => ({
+    //   users: prevState.users.filter(user => user.id !== id)
+    // }));
+    // this.props.history.push("/users");
+  };
+
   // ---Comments ---
 
   getComments = async () => {
@@ -141,7 +151,7 @@ class App extends Component {
 
   handleRegister = async e => {
     e.preventDefault();
-    debugger;
+
     const currentUser = await registerUser(this.state.authFormData);
     this.setState({ currentUser });
   };
@@ -181,9 +191,9 @@ class App extends Component {
             />
           )}
         />
-
-        <Route
-          exact path="/"
+        {/* <Route
+          exact
+          path="/"
           render={() => (
             <Login
               handleLogin={this.handleLogin}
@@ -191,9 +201,25 @@ class App extends Component {
               formData={this.state.authFormData}
             />
           )}
+        /> */}
+
+        <Route
+          exact
+          path="/users"
+          render={() => (
+            <User
+              // handleLogin={this.handleLogin}
+              // handleChange={this.authHandleChange}
+              mountEditForm={this.monutEditForm}
+              deleteUser={this.deleteUser}
+              formData={this.state.authFormData}
+              user={this.state.currentUser}
+            />
+          )}
         />
         <Route
-          exact path="/register"
+          exact
+          path="/register"
           render={() => (
             <Register
               handleRegister={this.handleRegister}
@@ -202,25 +228,29 @@ class App extends Component {
             />
           )}
         />
-
+        
         <Route
           exact
           path="/arts"
           render={() => <Arts arts={this.state.arts} />}
         />
+        {this.state.currentUser &&
+          <Route
+            exact
+            path="/new/arts"
+            render={() => (
+              <CreateArt
+                handleFormChange={this.handleFormChange}
+                artForm={this.state.artForm}
+                newArt={this.newArt}
+              />
+            )}
+          />
+        }
 
         <Route
-          exact path="/new/arts"
-          render={() => (
-            <CreateArt
-              handleFormChange={this.handleFormChange}
-              artForm={this.state.artForm}
-              newArt={this.newArt}
-            />
-          )}
-        />
-        <Route
-          exact path="/arts/:id"
+          exact
+          path="/arts/:id"
           render={props => {
             const { id } = props.match.params;
             const art = this.state.arts.find(el => el.id === parseInt(id));
@@ -237,15 +267,14 @@ class App extends Component {
             );
           }}
         />
-
         <Route
           exact
           path="/comments"
           render={() => <Comments comments={this.state.comments} />}
         />
-
         <Route
-          exact path="/new/comments"
+          exact
+          path="/new/comments"
           render={() => (
             <CreateComments
               handleFormChange={this.handleFormChange}
@@ -255,7 +284,8 @@ class App extends Component {
           )}
         />
         <Route
-          exact path="/comments/:id"
+          exact
+          path="/comments/:id"
           render={props => {
             const { id } = props.match.params;
             const comment = this.state.comments.find(

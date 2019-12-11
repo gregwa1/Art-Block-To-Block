@@ -24,38 +24,37 @@ class ArtProfile extends Component {
         ) : (
           <div>
             <h1>{art.art_name}</h1>
-            <img src={art.url} alt="artname" />
+            <img className="art-profile-img" src={art.url} alt="artname" />
 
             {this.state.isEdit ? (
-              <Route
-                path={"/arts/:id/edit"}
-                render={() => (
-                  <EditArt
-                    handleFormChange={this.props.handleFormChange}
-                    handleSubmit={e => {
-                      e.preventDefault();
-                      this.props.editArt();
-                      this.setState({ isEdit: false });
-                      this.props.history.push(`/arts/${this.props.artForm.id}`);
-                    }}
-                    artForm={this.props.artForm}
-                  />
-                )}
+              // <Route
+              //   path={"/arts/:id/edit"}
+              //   render={() => (
+              <EditArt
+                handleFormChange={this.props.handleFormChange}
+                handleSubmit={e => {
+                  e.preventDefault();
+                  this.props.editArt();
+                  this.setState({ isEdit: false });
+                  // this.props.history.push(`/arts/${this.props.artForm.id}`);
+                }}
+                artForm={this.props.artForm}
               />
             ) : (
+              // )}
+              // />
               <>
-                <h1>{art.name}</h1>
+                <br />
                 <button
                   onClick={() => {
                     this.setState({
                       isEdit: true
                     });
-                    this.props.history.push(`/arts/${art.id}/edit`);
+                    // this.props.history.push(`/arts/${art.id}/edit`);
                   }}
                 >
                   Edit
                 </button>{" "}
-                }
                 <button
                   onClick={() => {
                     this.props.deleteArt(art.id);

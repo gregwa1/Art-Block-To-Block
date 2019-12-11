@@ -8,8 +8,15 @@
   padding: 0;
   background-color: #24252a;
   background-image: url("https://www.nuhotelbrooklyn.com/wp-content/uploads/2015/05/17119786192_083b74ceaf_z.jpg");
-  background-repeat: repeat;
+  background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
+  height: 100%;
+}
+
+h3 {
+  color: wheat;
+  font-size: 30px;
 }
 
 form p {
@@ -22,6 +29,28 @@ form p {
 
 .create-form {
   min-height: 90vh;
+  display: grid;
+  grid-template-rows: 10% 80%;
+  justify-items: center;
+}
+
+.create-form form {
+  background: rgba(127, 255, 0, 0.3);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.create-form form input {
+  height: 15%;
+  opacity: 1 !important;
+}
+
+.create-form form p {
+  font-size: 20px;
+}
+
+.create-form form button {
+  height: 60px;
 }
 
 nav {
@@ -32,28 +61,46 @@ nav {
   padding: 30px 10%;
 }
 
-nav button {
+button {
   border: 1px solid black;
-  font-family: "Play", sans-serif;
-  font-weight: 500;
-  font-size: 16px;
+  font-family: "Indie Flower", cursive;
+  font-size: 25px;
   color: #edf0f1;
   background-color: #1a6b2f;
   text-decoration: none;
+  border-radius: 15px;
+  font-weight: bold;
+  padding: 16px;
 }
 
 nav a {
   color: chartreuse;
   text-decoration: none;
   font-family: "Lobster", cursive;
-  font-size: 32px;
+  font-size: 50px;
+  margin-left: -120px;
   text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+}
+
+.username p {
+  color: chartreuse;
+  font-size: 80px;
+  font-family: "Indie Flower", cursive;
+  text-align: center;
+  position: relative;
+  top: 160px;
+}
+
+.username h1 {
+  color: chartreuse;
+  font-size: 250px;
+  font-family: "Graffiti Treat", Arial, Helvetica, sans-serif;
+  text-align: center;
 }
 
 .art-gallery {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  height: 130vh;
 }
 
 img.single-art {
@@ -61,7 +108,8 @@ img.single-art {
   border: 2px solid rgb(45, 49, 47);
   box-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
   width: 80%;
-
+  position: relative;
+  top: -540px;
 }
 
 .auth-container p {
@@ -79,18 +127,35 @@ img.single-art {
 
 .auth-container {
   min-height: 90vh;
-
 }
 
 header {
   color: white;
+  height: 100vh;
 }
 
 .username {
   color: chartreuse;
 }
 
+.art-page {
+  /* border: 1px solid red; */
+  text-align: center;
+}
 .art-page h1 {
   color: wheat;
+  /* border: 1px solid blue; */
 }
 
+.art-profile-img {
+  border: 3px solid black;
+  box-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+}
+
+.art-page button {
+  width: 90px;
+  height: 40px;
+  font-size: 20px;
+  border-radius: 15px;
+  margin: 30px 50px;
+}

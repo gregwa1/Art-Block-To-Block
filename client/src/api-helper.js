@@ -16,7 +16,7 @@ export const loginUser = async loginData => {
 };
 
 export const registerUser = async registerData => {
-  debugger;
+ 
   const res = await api.post("/users", { user: registerData });
   localStorage.setItem("authToken", res.data.token);
   api.defaults.headers.common.authorization = `Bearer ${res.data.token}`;
@@ -32,6 +32,14 @@ export const verifyUser = async () => {
   }
   return false;
 };
+
+export const destroyUser = async (id) => {
+  const resp = await api.delete(`/users/${id}`)
+  return resp.data
+}
+
+
+
 
 export const createArt = async (userId, data) => {
   data.user_id = userId;
@@ -76,3 +84,6 @@ export const destroyComments = async (id) => {
   const resp = await api.delete(`/comments/${id}`)
   return resp.data
 }
+
+
+

@@ -1,12 +1,11 @@
-import React from 'react'
-import { withRouter } from 'react-router-dom';
+import React from "react";
+import { withRouter } from "react-router-dom";
 
 function EditArt(props) {
   return (
     <div>
       <h3>Edit Art</h3>
-      <form onSubmit={props.newArt}>
-      
+      <form onSubmit={props.handleSubmit}>
         <p>Art Name:</p>
         <input
           type="text"
@@ -34,8 +33,7 @@ function EditArt(props) {
         <button>Update</button>
       </form>
     </div>
-  )
+  );
 }
-
 
 export default withRouter(EditArt);
