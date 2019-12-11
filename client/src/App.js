@@ -228,13 +228,13 @@ class App extends Component {
             />
           )}
         />
-        
+
         <Route
           exact
           path="/arts"
           render={() => <Arts arts={this.state.arts} />}
         />
-        {this.state.currentUser &&
+        {this.state.currentUser && (
           <Route
             exact
             path="/new/arts"
@@ -246,7 +246,7 @@ class App extends Component {
               />
             )}
           />
-        }
+        )}
 
         <Route
           exact
@@ -263,6 +263,7 @@ class App extends Component {
                 editArt={this.editArt}
                 artForm={this.state.artForm}
                 deleteArt={this.deleteArt}
+                currentUser={this.state.currentUser}
               />
             );
           }}

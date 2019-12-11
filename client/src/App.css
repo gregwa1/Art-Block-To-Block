@@ -96,6 +96,7 @@ nav a {
   font-size: 250px;
   font-family: "Graffiti Treat", Arial, Helvetica, sans-serif;
   text-align: center;
+  margin: 0;
 }
 
 .art-gallery {
@@ -114,15 +115,28 @@ img.single-art {
 
 .auth-container p {
   color: white;
+  font-size: 30px;
 }
 
 .auth-container h2 {
   color: white;
+  font-size: 35px;
 }
 
 .auth-container a {
   color: wheat;
   text-decoration: none;
+  font-size: 30px;
+}
+
+.auth-container form {
+  display: flex;
+  justify-content: space-around;
+}
+
+.auth-container input {
+  width: 220px;
+  height: 35px;
 }
 
 .auth-container {

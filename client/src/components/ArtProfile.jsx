@@ -45,24 +45,29 @@ class ArtProfile extends Component {
               // />
               <>
                 <br />
-                <button
-                  onClick={() => {
-                    this.setState({
-                      isEdit: true
-                    });
-                    // this.props.history.push(`/arts/${art.id}/edit`);
-                  }}
-                >
-                  Edit
-                </button>{" "}
-                <button
-                  onClick={() => {
-                    this.props.deleteArt(art.id);
-                    this.props.history.push("/");
-                  }}
-                >
-                  Delete
-                </button>
+
+                {this.props.currentUser && this.props ? (
+                  <div>
+                    <button
+                      onClick={() => {
+                        this.setState({
+                          isEdit: true
+                        });
+                        // this.props.history.push(`/arts/${art.id}/edit`);
+                      }}
+                    >
+                      Edit
+                    </button>{" "}
+                    <button
+                      onClick={() => {
+                        this.props.deleteArt(art.id);
+                        this.props.history.push("/");
+                      }}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                ) : null}
               </>
             )}
           </div>
